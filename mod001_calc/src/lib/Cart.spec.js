@@ -3,8 +3,13 @@ import Cart from "./Cart";
 describe('Cart', () => {
   let cart;
   const product = {
-    title: "Adidas Shoes",
+    title: "Adidas Shoes - Men",
     price: 12599
+  };
+
+  const product2 = {
+    title: "Adidas Shoes - Women",
+    price: 12099
   };
 
   beforeEach(() => {
@@ -38,5 +43,21 @@ describe('Cart', () => {
     });
 
     expect(cart.getTotal()).toBe(12599);
+  });
+
+  it('should update total when a product gets included and then removed', () => {
+    cart.add({
+      product,
+      quantity: 2,
+    });
+
+    cart.add({
+      product: product2,
+      quantity: 1,
+    });
+
+    cart.remove(product);
+
+    expect(cart.getTotal()).toBe(12099);
   });
 });
