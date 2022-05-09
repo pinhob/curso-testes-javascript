@@ -23,10 +23,24 @@ export default class Cart {
     return this.items.reduce((acc, item) => acc + (item.product.price * item.quantity), 0)
   };
 
-  checkout() {
+  summary() {
+    const total = this.getTotal();
+    const items = this.items;
+
     return {
-      total: this.getTotal(),
-      items: this.items
+      total,
+      items,
+    };
+  }
+
+  checkout() {
+    const { total, items } = this.summary();
+
+    this.items = [];
+
+    return {
+      total,
+      items,
     };
   };
 };

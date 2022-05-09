@@ -21,3 +21,25 @@ Object {
   "total": 49396,
 }
 `;
+
+exports[`Cart checkout() should return an object with the total and the list of items when summary() is called 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "product": Object {
+        "price": 12599,
+        "title": "Adidas Shoes - Men",
+      },
+      "quantity": 2,
+    },
+    Object {
+      "product": Object {
+        "price": 12099,
+        "title": "Adidas Shoes - Women",
+      },
+      "quantity": 2,
+    },
+  ],
+  "total": 49396,
+}
+`;
