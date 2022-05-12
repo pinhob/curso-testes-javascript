@@ -134,5 +134,48 @@ describe('Cart', () => {
 
       expect(cart.getTotal().getAmount()).toEqual(25198);
     });
+
+    it('should apply quantity discount for odd quantities', () => {
+      const condition = {
+        quantity: 2,
+      }
+
+      cart.add({
+        product,
+        condition,
+        quantity: 3,
+      });
+
+      expect(cart.getTotal().getAmount()).toEqual(22678);
+    });
+
+    it('should NOT apply percentage discount quantity if quantity is equal or below minimun', () => {
+      const condition = {
+        percentage: 30,
+        minimum: 2,
+      };
+
+      cart.add({
+        product,
+        condition,
+        quantity: 2,
+      });
+
+      expect(cart.getTotal().getAmount()).toEqual(25198);
+    });
+
+    it('should apply quantity discount when quantity is equal or below condition', () => {
+      const condition = {
+        quantity: 2,
+      }
+
+      cart.add({
+        product,
+        condition,
+        quantity: 1,
+      });
+
+      expect(cart.getTotal().getAmount()).toEqual(12599);
+    });
   });
 });
