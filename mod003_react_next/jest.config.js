@@ -4,5 +4,11 @@ module.exports = {
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
   },
-  testEnvironment: "jsdom"
+  testEnvironment: "jsdom",
+  collectCoverageFrom: [
+    '<rootDir>/components/**/*.js',
+    '<rootDir>/pages/**/*.js',
+    '<rootDir>/hooks/**/*.js',
+    '<rootDir>/store/**/*.js',
+  ],
 };
