@@ -7,10 +7,8 @@ const product = {
   image: "https://images.unsplash.com/photo-1495856458515-0637185db551?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
 }
 
-const addToCart = jest.fn();
-
 const renderCartItem = () => {
-  render(<CartItem product={product} addToCart={addToCart} />);
+  render(<CartItem product={product} />);
 }
 
 describe('CartItem', () => {
@@ -20,7 +18,7 @@ describe('CartItem', () => {
     expect(screen.getByTestId('cart-item')).toBeInTheDocument()
   });
 
-  fit('should display proper content', () => {
+  it('should display proper content', () => {
     renderCartItem();
 
     const title = screen.getByText(new RegExp(product.title, 'i'));
@@ -32,4 +30,30 @@ describe('CartItem', () => {
     expect(image).toHaveProperty('src', product.image);
     expect(image).toHaveAttribute('alt', product.title)
   });
+
+  it('should display 1 as initial quantity', () => {
+    renderCartItem();
+
+    const quantity = screen.getByTestId('quantity').textContent;
+
+    expect(quantity).toBe("1")
+  });
+
+  it('should increased quantity by 1 when second button is clicked', () => {
+    renderCartItem();
+
+    const quantity = screen.getByTestId('quantity').textContent;
+
+    const [_, button] = screen.getAllByRole('button');
+
+    // screen.debug(button);
+
+    fireEvent.click(button);
+
+    expect(screen.getByTestId('quantity').textContent).toBe('2');
+  });
+
+  it.todo('should decreased quantity by 1 when first button is clicked');
+
+  it.todo('should not go below 0 in quantity');
 });
