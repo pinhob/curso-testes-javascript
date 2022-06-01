@@ -1,5 +1,3 @@
-import { randomNumber } from './utils';
-
 /*
  * Mirage JS guide on Factories: https://miragejs.com/docs/data-layer/factories
  */
@@ -9,6 +7,7 @@ import { Factory } from 'miragejs';
  * Faker Github repository: https://github.com/Marak/Faker.js#readme
  */
 import faker from 'faker';
+import { randomNumber } from './utils';
 
 export default {
   user: Factory.extend({
