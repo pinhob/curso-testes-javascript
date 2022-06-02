@@ -6,7 +6,7 @@ import { Factory } from 'miragejs';
 /*
  * Faker Github repository: https://github.com/Marak/Faker.js#readme
  */
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 import { randomNumber } from './utils';
 
@@ -29,10 +29,10 @@ const images = [
   'https://images.unsplash.com/photo-1444881421460-d838c3b98f95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80',
 ];
 
-export default {
+const Product = {
   product: Factory.extend({
     title() {
-      return faker.fake('{{lorem.words}}');
+      return faker.commerce.productName();
     },
     price() {
       return faker.fake('{{commerce.price}}');
@@ -42,3 +42,5 @@ export default {
     },
   }),
 };
+
+export default Product;

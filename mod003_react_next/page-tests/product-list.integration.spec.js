@@ -58,7 +58,7 @@ describe('ProductList', () => {
     });
   });
 
-  fit('should filter the product list when a search is performed', async () => {
+  it('should filter the product list when a search is performed', async () => {
     const searchTerm = 'Relógio bonito';
 
     server.createList('product', 2);
@@ -70,6 +70,8 @@ describe('ProductList', () => {
     renderProductList();
 
     await waitFor(() => {
+      screen.queryAllByTestId('product-card')
+      screen.debug();
       expect(screen.queryAllByTestId('product-card')).toHaveLength(3);
     });
 
@@ -83,6 +85,7 @@ describe('ProductList', () => {
       expect(screen.queryAllByTestId('product-card')).toHaveLength(1);
     });
   });
+
   it.todo('should display the total quantity of products');
   it.todo('should display product (singular) when there is only 1 product');
 });
